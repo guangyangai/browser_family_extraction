@@ -1,6 +1,5 @@
 # **Report for agent family prediction**
 
-## Writeup Template
 
 ---
 
@@ -20,9 +19,11 @@ The goals / steps of this project are the following:
 ### Reflection
 
 ### 1. Summary
-
-I did a simple desribe on the data and noticed all the agent descriptions are unique, should not categorize the the agent.
-
+First of all, predicting agent family is a classification problem while predicting version number is a regression problem.
+Given the size and nature of the data, I decided to use batch, model-based learning.
+I did a simple desribe on the data and noticed all the agent descriptions are unique, apparentlly I can not use the raw agent description
+to train the model, it would need some pre-processing on its description to exact some features to train the model.
+I decided to use text feature extraction modules in sklearn and applied on agent description to create
 
 ### 2. Identify potential shortcomings with your current pipeline
 
