@@ -20,7 +20,14 @@ The goals / steps of this project are the following:
 
 ### 1. Summary
 First of all, predicting agent family is a classification problem while predicting version number is a regression problem.
-Given the size and nature of the data, I decided to use batch, model-based learning.
+Given the size(421215 rows) and nature of the data, I decided to use batch, model-based learning.
+
+
+
+Needs to check the sparsity of the words, as there might be few common words
+
+### 2. Text feature extraction on the agent description
+
 I did a simple desribe on the data and noticed all the agent descriptions are unique, apparentlly I can not use the raw agent description
 to train the model, it would need some pre-processing on its description to exact some features to train the model.
 I decided to use text feature extraction modules in sklearn and applied on agent description to create features.
@@ -37,15 +44,17 @@ the vector of all the token frequencies for a given agent is considered a multiv
 
 A collection of agents can thus be represented by a matrix with one row per agent and one column per token (e.g. word) occurring in the collection.
 
-### 2. Identify potential shortcomings with your current pipeline
-
-
-One potential shortcoming would be what would happen when ... 
-
-Another shortcoming could be ...
-
-
+By closer looking into the agent, it's actually made of a series of patterned strings separated by white space. The patten of the token is
+'\W+ / number (\W)'
+default vectorizer with 1 ngram
+<421215x33719 sparse matrix of type '<class 'numpy.int64'>', 33719 words is too large.
 ### 3. Suggest possible improvements to your pipeline
+
+Instead of building a simple collection of unigrams (n=1), I built a collection of bigrams (n=2), where occurrences of pairs of consecutive words are counted.
+
+with 2 ngrams
+<421215x152044 sparse matrix of type '<class 'numpy.int64'>'
+	with 7022630 stored elements in Compressed Sparse Row format>
 
 A possible improvement would be to ...
 
