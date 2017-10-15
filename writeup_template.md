@@ -19,10 +19,12 @@ First of all, there are 2 tasks for this project:
 1. predicting agent family, which is a classification problem
 2. predicting version number which is a regression problem.
 Given the size(421215 records which could be easily loaded into memory) and nature of the data, I decided to use batch, model-based learning.
-![alt text][family_distribution]
-![alt text][version_distribution]
-[family_distribution]: https://github.com/energydatasci/browser_family_extraction/blob/master/images/family_countplot.png "Family Distribution in the Data"
-[version_distribution]: https://github.com/energydatasci/browser_family_extraction/blob/master/images/version_countplot.png "version Distribution in the Data"
+
+![alt text][family]
+![alt text][version]
+
+[family]: https://github.com/energydatasci/browser_family_extraction/blob/master/images/family_countplot.png "Family Distribution in the Data"
+[version]: https://github.com/energydatasci/browser_family_extraction/blob/master/images/version_countplot.png "version Distribution in the Data"
 
 
 The pipeline of the project is:
