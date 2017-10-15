@@ -19,10 +19,18 @@ The goals / steps of this project are the following:
 ### Reflection
 
 ### 1. Summary
-First of all, predicting agent family is a classification problem while predicting version number is a regression problem.
+First of all, there are 2 tasks for this project:
+1. predicting agent family, which is a classification problem
+2. predicting version number which is a regression problem.
 Given the size(421215 rows) and nature of the data, I decided to use batch, model-based learning.
 
-
+The pipeline of the project is:
+1. Split the training data into test set and training set using stratified sampling, due to the fact that the agent family in the training data are not uniformly distributed. (Add figure here)
+2. Gain insights on the data
+3. Extract features from the agent description
+4. Train a classifier on the training set for agent family and train a regression model for version number
+5. Validate the performance on the test set
+6. Use the trained classifier to predict on the test data
 
 Needs to check the sparsity of the words, as there might be few common words
 
@@ -55,6 +63,7 @@ Instead of building a simple collection of unigrams (n=1), I built a collection 
 with 2 ngrams
 <421215x152044 sparse matrix of type '<class 'numpy.int64'>'
 	with 7022630 stored elements in Compressed Sparse Row format>
+2 ngram make sense because by platform itself could be meaningless, but with version number or IP address is meaningful. 
 
 A possible improvement would be to ...
 
