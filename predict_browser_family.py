@@ -2,7 +2,7 @@ import os, argparse, logging, csv
 import pandas as pd
 import numpy as np
 from abc import ABCMeta
-from sklearn.import Pipeline
+from sklearn.pipeline import Pipeline
 from sklearn.model_selection  import StratifiedShuffleSplit
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import SGDClassifier
