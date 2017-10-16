@@ -12,7 +12,7 @@ from sklearn.model_selection import GridSearchCV
 DATA_PATH = "datasets"
 RESULTS_PATH = "results"
 NULL_VAL = "None"
-OCCURRENCE_THRES = 2
+OCCURRENCE_THRES = 10
 SEPARATOR = '\t'
 NGRAM_RANGE = (2, 2)
 SVM_ALPHA_RANGE = (1e-2, 1e-3)
@@ -62,7 +62,7 @@ class AgentPredictor(object):
                     .format(column_name, records_w_few_occurrence, OCCURRENCE_THRES))
         filterd_dataset = filter_null_value.loc[~filter_null_value[column_name].isin(records_w_few_occurrence)]
         logger.info("{} records after excluding records with few occurrences in column {}"
-                    .format(len(filter_null_value), column_name))
+                    .format(len(filterd_dataset), column_name))
         return filterd_dataset
 
     def split_dataset(self, raw_dataset, column_name, n_splits=1, test_size=0.2, random_state=42):
@@ -80,7 +80,7 @@ class AgentPredictor(object):
         """Train a SVM classifier"""
         cls = Pipeline([
             ("vect", CountVectorizer(ngram_range=NGRAM_RANGE)),
-            ("tfidf", TfidfTransformer()),
+            ("tfidf", TfidfTransformer(smooth_idf=False)),
             ("clf-svm", SGDClassifier(loss='hinge', penalty='l2', max_iter=5, random_state=42)),
         ])
 
@@ -101,16 +101,15 @@ class AgentPredictor(object):
         """Train a SVM classifier"""
         cls = Pipeline([
             ("vect", CountVectorizer(ngram_range=NGRAM_RANGE)),
-            ("tfidf", TfidfTransformer()),
+            ("tfidf", TfidfTransformer(smooth_idf=False)),
             ("clf-svm", SGDClassifier(loss='hinge', penalty='l2', alpha=1e-3, max_iter=5, random_state=42)),
         ])
 
-
-        _ = cls.fit(strat_train_set[self.feature_cols].values.astype('U'),
+        cls_svm = cls.fit(strat_train_set[self.feature_cols].values.astype('U'),
                                           strat_train_set[pred_column].values.astype('U'))
 
 
-        return cls
+        return cls_svm
 
     def eval_performance(self, strat_test_set, clf, pred_column):
         predicted_svm_test = clf.predict(strat_test_set[pred_column].values.astype('U'))
