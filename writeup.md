@@ -31,7 +31,7 @@ The pipeline of the project is:
 1. Clean data using pandas dataframe functions (e.g. describe and info). More specifically, I checked the type, unique values and their counts for each column and whether there
 are missing value in any row. I dropped the rows where there are missing value (e.g. None for version number) for the training. I also dropped the rows where the predicted values for thoses row only had a few occurrences which
 are not large enough for training.
-2. Split the training data into test set and training set using stratified sampling, due to the fact that the agent family in the training data are not uniformly distributed. (Add figure here)
+2. Split the training data into test set and training set using stratified sampling, due to the fact that the agent family and version number in the training data are not uniformly distributed.
 3. Extract features from agent description
 4. Train a classifier on the training set for agent family and version number (Use GridSearch or Randomized Search to fine tune the classifier)
 5. Evaluate the performance on the test set

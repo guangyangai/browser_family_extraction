@@ -9,12 +9,17 @@ Report is written as markdown file under writeup.md
 
 There is one notebook (demo.ipynb) created for visualization and showing the analysis process.
 
+To look into the notebook, you would need to cd to the repo directory and run
+```
+cd browser_family_extraction
+jupyter notebook demo.ipynb
+```
+
 Code is under prediction_browser_family.py
 
 To run the script, you would need to cd to the repo directory and run
 
 ```
-cd browser_family_extraction
 python predict_browser_family.py --training data_coding_exercise.txt --test test_data_coding_exercise.txt --prediction-results test_results.txt
 ```
 
