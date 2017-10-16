@@ -124,6 +124,8 @@ class AgentPredictor(object):
 
     def form_results(self, pred_results, test_data):
         results_reorg = []
+        from IPython import embed
+        embed()
         for idx in range(len(test_data)):
             row = {}
             for col in self.feature_txt_col:
