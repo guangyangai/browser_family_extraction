@@ -44,6 +44,8 @@ class AgentPredictor(object):
         return ["Agent"]
 
     def load_data(self, file_path, data_path = DATA_PATH):
+        from IPython import embed
+        embed()
         file_path = os.path.join(data_path, file_path)
         return pd.read_csv(file_path, sep = SEPARATOR, names = self.header_row)
 
@@ -151,7 +153,7 @@ if __name__ == "__main__":
     training_file_path = args.training_file_path
     test_file_path = args.test_file_path
     pred_results_file_path = args.pred_results_file_path
-    agent_predictor = AgentPredictor(AgentPredictor,test_file_path,pred_results_file_path)
+    agent_predictor = AgentPredictor(training_file_path,test_file_path,pred_results_file_path)
     agent_predictor.run()
 
 
