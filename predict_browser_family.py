@@ -44,7 +44,7 @@ class AgentPredictor(object):
         return ["AgentFamily", "Version"]
 
     @property
-    def feature_cols(self):
+    def feature_txt_col(self):
         return "Agent"
 
     def load_data(self, file_path, data_path = DATA_PATH):
@@ -73,7 +73,7 @@ class AgentPredictor(object):
             strat_train_set = filterd_dataset.loc[train_index]
             strat_test_set = filterd_dataset.loc[test_index]
         logger.info('split into {} training set and {} test set'.format(len(strat_train_set),len(strat_test_set)))
-        return strat_train_set, strat_test_set
+        return strat_train_set.copy(), strat_test_set.copy()
 
 
     def train_classifier(self, strat_train_set, pred_column):
@@ -89,8 +89,8 @@ class AgentPredictor(object):
         }
 
         gs_clf = GridSearchCV(cls, parameters_svm, n_jobs=-1)
-        clf= gs_clf.fit(strat_train_set[self.feature_cols].values.astype('U'),
-                                          strat_train_set[pred_column].values.astype('U'))
+        clf= gs_clf.fit(strat_train_set[self.feature_txt_col].values.astype('U'),
+                        strat_train_set[pred_column].values.astype('U'))
 
         logger.info('Best score within the search is {}'.format(clf.best_score_))
         logger.info('Best found parameters are {}'.format(clf.best_params_))
@@ -105,20 +105,20 @@ class AgentPredictor(object):
             ("clf-svm", SGDClassifier(loss='hinge', penalty='l2', alpha=1e-3, max_iter=5, random_state=42)),
         ])
 
-        cls_svm = cls.fit(strat_train_set[self.feature_cols].values.astype('U'),
-                                          strat_train_set[pred_column].values.astype('U'))
+        cls_svm = cls.fit(strat_train_set[self.feature_txt_col].values.astype('U'),
+                          strat_train_set[pred_column].values.astype('U'))
 
 
         return cls_svm
 
     def eval_performance(self, strat_test_set, clf, pred_column):
-        predicted_svm_test = clf.predict(strat_test_set[pred_column].values.astype('U'))
-        test_score = np.mean(predicted_svm_test == strat_test_set[pred_column])
+        predicted_svm_test = clf.predict(strat_test_set[self.feature_txt_col].values.astype('U'))
+        test_score = np.mean(predicted_svm_test == strat_test_set[pred_column].values.astype('U'))
         logger.info('score on test set data within training data is {} for {}'.format(test_score, pred_column))
 
     def predict_column(self, test_dataset, clf, pred_column):
-        predicted_svm_test = clf.predict(test_dataset[pred_column].values.astype('U'))
-        test_score = np.mean(predicted_svm_test == test_dataset[pred_column])
+        predicted_svm_test = clf.predict(test_dataset[self.feature_txt_col].values.astype('U'))
+        test_score = np.mean(predicted_svm_test == test_dataset[pred_column].values.astype('U'))
         logger.info('score on new test data is {} for {}'.format(test_score, pred_column))
         return predicted_svm_test
 
@@ -126,7 +126,7 @@ class AgentPredictor(object):
         results_reorg = []
         for idx in range(len(test_data)):
             row = {}
-            for col in self.feature_cols:
+            for col in self.feature_txt_col:
                 row[col] = test_data[col][idx]
             for col in self.prediction_cols:
                 row[col] = pred_results[col][idx]
