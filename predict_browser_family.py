@@ -45,7 +45,7 @@ class AgentPredictor(object):
 
     @property
     def feature_cols(self):
-        return ["Agent"]
+        return "Agent"
 
     def load_data(self, file_path, data_path = DATA_PATH):
         file_path = os.path.join(data_path, file_path)
@@ -67,7 +67,7 @@ class AgentPredictor(object):
 
     def split_dataset(self, raw_dataset, column_name, n_splits=1, test_size=0.2, random_state=42):
         """split training data into test set and training set"""
-        split = StratifiedShuffleSplit(n_splits, test_size, random_state)
+        split = StratifiedShuffleSplit(n_splits=n_splits, test_size=test_size, random_state=random_state)
         filterd_dataset = self.filter_dataset(raw_dataset, column_name)
         for train_index, test_index in split.split(filterd_dataset, filterd_dataset[column_name]):
             strat_train_set = filterd_dataset.loc[train_index]
