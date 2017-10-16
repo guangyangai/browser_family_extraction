@@ -17,8 +17,12 @@ SEPARATOR = '\t'
 NGRAM_RANGE = (2, 2)
 SVM_ALPHA_RANGE = (1e-2, 1e-3)
 
-fh = logging.FileHandler('logs/app.log')
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+fh = logging.FileHandler('logs/app.log')
+fh.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fh.setFormatter(formatter)
 logger.addHandler(fh)
 
 class AgentPredictor(object):
@@ -44,8 +48,6 @@ class AgentPredictor(object):
         return ["Agent"]
 
     def load_data(self, file_path, data_path = DATA_PATH):
-        from IPython import embed
-        embed()
         file_path = os.path.join(data_path, file_path)
         return pd.read_csv(file_path, sep = SEPARATOR, names = self.header_row)
 
@@ -79,7 +81,7 @@ class AgentPredictor(object):
         cls = Pipeline([
             ("vect", CountVectorizer(ngram_range=NGRAM_RANGE)),
             ("tfidf", TfidfTransformer()),
-            ("clf-svm", SGDClassifier(loss='hinge', max_iter=5, random_state=42)),
+            ("clf-svm", SGDClassifier(loss='hinge', penalty='l2', max_iter=5, random_state=42)),
         ])
 
         parameters_svm = {
@@ -94,6 +96,21 @@ class AgentPredictor(object):
         logger.info('Best found parameters are {}'.format(clf.best_params_))
 
         return clf
+
+    def train_default_classifier(self, strat_train_set, pred_column):
+        """Train a SVM classifier"""
+        cls = Pipeline([
+            ("vect", CountVectorizer(ngram_range=NGRAM_RANGE)),
+            ("tfidf", TfidfTransformer()),
+            ("clf-svm", SGDClassifier(loss='hinge', penalty='l2', alpha=1e-3, max_iter=5, random_state=42)),
+        ])
+
+
+        _ = cls.fit(strat_train_set[self.feature_cols].values.astype('U'),
+                                          strat_train_set[pred_column].values.astype('U'))
+
+
+        return cls
 
     def eval_performance(self, strat_test_set, clf, pred_column):
         predicted_svm_test = clf.predict(strat_test_set[pred_column].values.astype('U'))
@@ -133,7 +150,8 @@ class AgentPredictor(object):
         for col in self.prediction_cols:
             strat_train_set, strat_test_set = self.split_dataset(training_data, col)
             logger.info('Begin training for col {}'.format(col))
-            clf = self.train_classifier(strat_train_set, col)
+            #clf = self.train_classifier(strat_train_set, col)
+            clf = self.train_default_classifier(strat_train_set, col)
             self.eval_performance(strat_test_set, clf, col)
             predicted_col_test = self.predict_column(test_data, clf, col)
             results[col] = predicted_col_test
