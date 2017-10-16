@@ -49,7 +49,7 @@ class AgentPredictor(object):
 
     @property
     def output_header_row(self):
-        return ["Agent", "ActualAgentFamily", "ActualVersion", "PredictedAgentFamily","PredictedVersion"]
+        return ["ActualAgent", "ActualAgentFamily", "ActualVersion", "PredictedAgentFamily","PredictedVersion"]
 
     def load_data(self, file_path, data_path = DATA_PATH):
         file_path = os.path.join(data_path, file_path)
