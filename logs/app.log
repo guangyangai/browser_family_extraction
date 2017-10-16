@@ -50,3 +50,51 @@
 2017-10-15 23:20:31,449 - __main__ - INFO - Begin training for col Version
 2017-10-15 23:22:14,217 - __main__ - INFO - score on test set data within training data is 0.9571744139094083 for Version
 2017-10-15 23:22:14,313 - __main__ - INFO - score on new test data is 1.0 for Version
+2017-10-16 00:04:15,405 - __main__ - INFO - 421215 records before filtering
+2017-10-16 00:04:15,481 - __main__ - INFO - 421215 records after excluding null values in column AgentFamily
+2017-10-16 00:04:15,554 - __main__ - INFO - In column AgentFamily, [] has less occurrences than 10 and will be dropped.
+2017-10-16 00:04:15,594 - __main__ - INFO - 421215 records after excluding records with few occurrences in column AgentFamily
+2017-10-16 00:04:16,276 - __main__ - INFO - split into 336972 training set and 84243 test set
+2017-10-16 00:04:16,319 - __main__ - INFO - Begin training for col AgentFamily
+2017-10-16 00:05:00,341 - __main__ - INFO - score on test set data within training data is 0.9570528115095617 for AgentFamily
+2017-10-16 00:05:00,363 - __main__ - INFO - score on new test data is 1.0 for AgentFamily
+2017-10-16 00:05:00,363 - __main__ - INFO - 421215 records before filtering
+2017-10-16 00:05:00,447 - __main__ - INFO - 421036 records after excluding null values in column Version
+2017-10-16 00:05:00,518 - __main__ - INFO - In column Version, ['536', '603', '0', '533', '78', '451'] has less occurrences than 10 and will be dropped.
+2017-10-16 00:05:00,571 - __main__ - INFO - 421010 records after excluding records with few occurrences in column Version
+2017-10-16 00:05:01,487 - __main__ - INFO - split into 336808 training set and 84202 test set
+2017-10-16 00:05:01,551 - __main__ - INFO - Begin training for col Version
+2017-10-16 00:06:44,436 - __main__ - INFO - score on test set data within training data is 0.9571744139094083 for Version
+2017-10-16 00:06:44,529 - __main__ - INFO - score on new test data is 1.0 for Version
+2017-10-16 00:21:40,414 - __main__ - INFO - 421215 records before filtering
+2017-10-16 00:21:40,490 - __main__ - INFO - 421215 records after excluding null values in column AgentFamily
+2017-10-16 00:21:40,555 - __main__ - INFO - In column AgentFamily, [] has less occurrences than 10 and will be dropped.
+2017-10-16 00:21:40,597 - __main__ - INFO - 421215 records after excluding records with few occurrences in column AgentFamily
+2017-10-16 00:21:41,313 - __main__ - INFO - split into 336972 training set and 84243 test set
+2017-10-16 00:21:41,353 - __main__ - INFO - Begin training for col AgentFamily
+2017-10-16 00:22:21,219 - __main__ - INFO - score on test set data within training data is 0.9570528115095617 for AgentFamily
+2017-10-16 00:22:21,250 - __main__ - INFO - score on new test data is 1.0 for AgentFamily
+2017-10-16 00:22:21,250 - __main__ - INFO - 421215 records before filtering
+2017-10-16 00:22:21,309 - __main__ - INFO - 421036 records after excluding null values in column Version
+2017-10-16 00:22:21,374 - __main__ - INFO - In column Version, ['0', '536', '603', '451', '533', '78'] has less occurrences than 10 and will be dropped.
+2017-10-16 00:22:21,430 - __main__ - INFO - 421010 records after excluding records with few occurrences in column Version
+2017-10-16 00:22:22,219 - __main__ - INFO - split into 336808 training set and 84202 test set
+2017-10-16 00:22:22,277 - __main__ - INFO - Begin training for col Version
+2017-10-16 00:24:02,951 - __main__ - INFO - score on test set data within training data is 0.9571744139094083 for Version
+2017-10-16 00:24:03,050 - __main__ - INFO - score on new test data is 1.0 for Version
+2017-10-16 00:26:01,135 - __main__ - INFO - 421215 records before filtering
+2017-10-16 00:26:01,207 - __main__ - INFO - 421215 records after excluding null values in column AgentFamily
+2017-10-16 00:26:01,298 - __main__ - INFO - In column AgentFamily, [] has less occurrences than 10 and will be dropped.
+2017-10-16 00:26:01,333 - __main__ - INFO - 421215 records after excluding records with few occurrences in column AgentFamily
+2017-10-16 00:26:02,056 - __main__ - INFO - split into 336972 training set and 84243 test set
+2017-10-16 00:26:02,089 - __main__ - INFO - Begin training for col AgentFamily
+2017-10-16 00:26:46,117 - __main__ - INFO - score on test set data within training data is 0.9570528115095617 for AgentFamily
+2017-10-16 00:26:46,140 - __main__ - INFO - score on new test data is 1.0 for AgentFamily
+2017-10-16 00:26:46,141 - __main__ - INFO - 421215 records before filtering
+2017-10-16 00:26:46,227 - __main__ - INFO - 421036 records after excluding null values in column Version
+2017-10-16 00:26:46,297 - __main__ - INFO - In column Version, ['533', '603', '451', '0', '78', '536'] has less occurrences than 10 and will be dropped.
+2017-10-16 00:26:46,352 - __main__ - INFO - 421010 records after excluding records with few occurrences in column Version
+2017-10-16 00:26:47,201 - __main__ - INFO - split into 336808 training set and 84202 test set
+2017-10-16 00:26:47,266 - __main__ - INFO - Begin training for col Version
+2017-10-16 00:28:31,192 - __main__ - INFO - score on test set data within training data is 0.9571744139094083 for Version
+2017-10-16 00:28:31,292 - __main__ - INFO - score on new test data is 1.0 for Version
