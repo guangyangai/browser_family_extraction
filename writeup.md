@@ -12,7 +12,7 @@ The goals / steps of this project are the following:
 
 ---
 
-### Reflection
+
 
 ### 1. Summary
 First of all, there are 2 tasks for this project:
@@ -62,11 +62,11 @@ for SVM classification,`SGDClassifier` is a good choice as it has the least time
 
 
 ### 4. Possible improvements to your pipeline
-####4.1 Use distributed learning or online learning to scale to larger data set
+#### 4.1 Use distributed learning or online learning to scale to larger data set
 
 Because the sample size is small, I loaded all the training data in memory for the training. However, in order to make the pipeline scalable to
 much larger sized data, I could build a online learning or distributed learning pipeline.
-####4.2 Use ensemble model
+#### 4.2 Use ensemble model
 
 To deploy a linear SVM classifier, it's better to design an application that overlays a Boolean rule-based classifier (e.g. decision trees) over the machine learning classifier.
 Users frequently like to adjust things that do not come out quite right, and if management gets on the phone and wants the classification of a particular document fixed,

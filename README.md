@@ -1,9 +1,9 @@
 # browser_family_extraction
-Use machine learning models to predict browser family
+Use machine learning models to predict browser family and version number
 
 ---
 
-###Overview
+## Overview
 
 Report is written as markdown file under writeup.md
 
@@ -21,3 +21,5 @@ python predict_browser_family.py --training data_coding_exercise.txt --test test
 Stored test results are at `results/test_results.txt`
 
 To test the script on new data set, you would need to copy the new txt file to `datasets` folder.
+
+---
