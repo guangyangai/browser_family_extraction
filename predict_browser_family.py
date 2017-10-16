@@ -47,6 +47,10 @@ class AgentPredictor(object):
     def feature_txt_col(self):
         return "Agent"
 
+    @property
+    def output_header_row(self):
+        return ["Agent", "ActualAgentFamily", "ActualVersion", "PredictedAgentFamily","PredictedVersion"]
+
     def load_data(self, file_path, data_path = DATA_PATH):
         file_path = os.path.join(data_path, file_path)
         return pd.read_csv(file_path, sep = SEPARATOR, names = self.header_row)
@@ -124,20 +128,18 @@ class AgentPredictor(object):
 
     def form_results(self, pred_results, test_data):
         results_reorg = []
-        from IPython import embed
-        embed()
         for idx in range(len(test_data)):
             row = {}
-            for col in self.feature_txt_col:
-                row[col] = test_data[col][idx]
+            for col in self.header_row:
+                row['Actual'+col] = test_data[col][idx]
             for col in self.prediction_cols:
-                row[col] = pred_results[col][idx]
+                row['Predicted'+col] = pred_results[col][idx]
             results_reorg.append(row)
         return results_reorg
 
     def write_to_file(self, pred_results, test_data):
         with open(self.pred_results_file_path_, 'w') as f:
-            writer = csv.DictWriter(f, fieldnames=self.header_row)
+            writer = csv.DictWriter(f, fieldnames=self.output_header_row, delimiter=SEPARATOR)
             writer.writeheader()
             rows = self.form_results(pred_results, test_data)
             for row in rows:
